@@ -359,6 +359,9 @@ export const collection = [
     "keepYUp": true,
     "displayScale": 0.75,
     "yaw": 2.94159265,
-    "poster": "./assets/posters/duo.webp"
+    "poster": "./assets/posters/duo.webp",
+    "inactiveScreenNodes": [
+      "Object_107"
+    ]
   }
 ];

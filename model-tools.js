@@ -13,6 +13,7 @@ export function prepareModel(gltf,item){
  const outer=new T.Group(),object=gltf.scene;outer.add(object);
  // Sketchfab glTF contains source coordinate transforms. Normalize the evaluated mesh, not its raw root rotation.
  for(const name of item.excludeNodes||[]){(object.getObjectByName(name)||object.getObjectByName(T.PropertyBinding.sanitizeNodeName(name)))?.removeFromParent();}
+ for(const name of item.inactiveScreenNodes||[]){const node=object.getObjectByName(name);if(node?.isMesh&&!Array.isArray(node.material)){const mat=node.material=node.material.clone();mat.map=null;mat.emissiveMap=null;mat.emissive?.set('#000000');mat.color?.set('#090c10');mat.roughness=.24;mat.metalness=.05;}}
  if(item.alignPrincipalAxes)alignPrincipalAxes(object);
  let box=new T.Box3().setFromObject(object),size=box.getSize(new T.Vector3());
  if(item.orientation){object.rotation.set(...item.orientation);}
