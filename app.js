@@ -7,7 +7,7 @@ import {collection as items} from './collection.js';
 const root=document.documentElement,story=document.querySelector('#story'),canvas=document.querySelector('canvas'),status=document.querySelector('.scene-status');
 const chapters=[...document.querySelectorAll('.chapter')],captions=chapters.map(x=>x.querySelector('.caption')),devices=chapters.map(x=>x.querySelector('.device'));
 const nav=document.querySelector('.timeline'),links=[...nav.querySelectorAll('a')],ghost=document.querySelector('.watermark'),motion=document.querySelector('.motion-button'),dialog=document.querySelector('dialog');
-const reduceMedia=matchMedia('(prefers-reduced-motion: reduce)'),mobile=matchMedia('(max-width:700px)');
+const reduceMedia=matchMedia('(prefers-reduced-motion: reduce)'),mobile=matchMedia('(max-width:560px)');
 const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)),smooth=v=>{v=clamp(v);return v*v*(3-2*v);};
 let userReduced=null;try{const saved=localStorage.getItem('iphone-motion');if(saved)userReduced=saved==='reduced';}catch{}
 const reduced=()=>userReduced??reduceMedia.matches;
