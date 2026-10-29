@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ededeb">
+  <meta name="description" content="От Macintosh 1984 до современных MacBook: интерактивная история формы компьютеров Apple в 3D.">
+  <title>Mac evolution · История формы</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./vendor/three-r180.js"></script>
+  <script defer src="./vendor/gsap.min.js"></script>
+  <script defer src="./vendor/ScrollTrigger.min.js"></script>
+  <script defer src="./collection.js"></script>
+  <script defer src="./models.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#collection">К экспонатам</a>
+  <header class="masthead">
+    <a class="wordmark" href="#macintosh" aria-label="Mac evolution, в начало">mac<span>evolution</span></a>
+    <span class="masthead-title">История формы</span>
+    <button class="mode-button" type="button" aria-pressed="false">Меньше движения</button>
+  </header>
+  <div class="world" aria-hidden="true">
+    <div class="year-ghost">1984</div>
+    <canvas class="model-canvas"></canvas>
+    <div class="ground-shadow"></div>
+  </div>
+  <main id="collection" tabindex="-1">
+    <h1 class="sr-only">История компьютеров Apple в тринадцати формах</h1>
+    <div id="chapters"></div>
+    <noscript><p class="no-script">Для 3D-выставки нужен JavaScript. Историю моделей можно изучить на <a href="https://www.apple.com/newsroom/">Apple Newsroom</a>.</p></noscript>
+  </main>
+  <aside class="scene-tools" aria-label="Управление моделью">
+    <span class="model-detail">9″ · Motorola 68000</span>
+    <button type="button" class="orbit-button" aria-pressed="false">Осмотреть в 3D <span aria-hidden="true">↗</span></button>
+    <span class="orbit-hint" hidden>Потяните модель в сторону. Esc: вернуться к истории.</span>
+  </aside>
+  <footer class="timeline-shell">
+    <div class="timeline-top"><span class="range-label">1984–2026</span><span class="chapter-counter" aria-hidden="true">01 / 13</span><button class="about-button" type="button">О выставке</button></div>
+    <nav class="timeline" aria-label="Выбрать год и модель"></nav>
+  </footer>
+  <p class="loading-status" role="status">Подготавливаем экспонаты…</p>
+  <p class="live-status sr-only" aria-live="polite" aria-atomic="true"></p>
+  <dialog class="about-dialog" aria-labelledby="about-title">
+    <button type="button" class="close-dialog" aria-label="Закрыть">×</button>
+    <h2 id="about-title">История формы.</h2>
+    <p>Тринадцать компьютеров, которые показывают, как менялся Mac. Прокрутка управляет поворотами, перемещением и сменой поколений.</p>
+    <p>Это независимая выставка. 3D-модели созданы для проекта и передают характерные формы устройств; это художественные реконструкции, а не точные инженерные копии.</p>
+    <p>Год обозначает появление выбранной модели или дизайна. Официальный источник доступен у каждого экспоната. Последняя глава описывает анонс от 28 октября 2026 года.</p>
+    <a class="repository-link" href="https://github.com/MiChiRose/mac-evolution-site">Открытый репозиторий ↗</a>
+  </dialog>
+</body>
+</html>

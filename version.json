@@ -1,0 +1,19 @@
+{
+  "version": "0.1.0",
+  "files": {
+    ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "THIRD-PARTY.txt": "649f14ed6b9ae3843206fa2b6a5d80067a20e94ac62a4964f88818921061708f",
+    "app.js": "fbf130586aecca4208a919e78e2380a675a652efe6a6187bcea02ca7df96b1c5",
+    "assets/Golos-Text-OFL.txt": "ff532f9e8789f09a9fdffc3c0954eedfb0a48be77b2e2eb90f5f82e4f347f50c",
+    "assets/favicon.svg": "c6905d1d80028fa81562c9d18636ea572ef47f7c513691721d4eccbdab7aa0ef",
+    "assets/golos-regular.ttf": "7c255885e99e7df35f846074e6b780ee166a725e565e3a67f760dd12f4e5b77a",
+    "collection.js": "3cdc0bcb0256f302cfb62acf42526ee252b610205a08eaf3f81095312a5d7437",
+    "index.html": "b4f79f213a4dea5603478621d42e4e1e2c15fdbcbb6673b1992e8f9704829493",
+    "models.js": "a36403a77c6ec3f0e16f474d7fdf3975c6a0991b9953b8dea49b4a48b2732f4f",
+    "style.css": "b36427e2840735d8d802331d5a44645f29798489a3b74b86f37963b324152cc2",
+    "vendor/ScrollTrigger.min.js": "308219390e5e3b84cda0c481e70caa9820883ae10bda44e6e9a149a81aac4b3f",
+    "vendor/Three-MIT.txt": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601",
+    "vendor/gsap.min.js": "96c01b81f44a3290e2b4532f55e2c9534b2adc43273a19f3756b2cb41f0fd0b6",
+    "vendor/three-r180.js": "bd2e7ac6a43896ba958b1fef025bb8c1fe7ef08b43a54f75a53823eb41bf3318"
+  }
+}

@@ -1,0 +1,19 @@
+Mac evolution
+
+Three.js r180: Copyright 2010-2025 Three.js Authors, MIT.
+The browser wrapper contains the unmodified CommonJS distribution.
+Full license: vendor/Three-MIT.txt
+https://threejs.org/
+
+GSAP 3.13.0 and ScrollTrigger 3.13.0:
+Copyright 2025, GreenSock. All rights reserved.
+Subject to https://gsap.com/standard-license/
+Original copyright headers are retained in each distribution.
+
+Golos Text: SIL Open Font License 1.1.
+Full license: assets/Golos-Text-OFL.txt
+
+Computer meshes and screen illustrations are original artistic reconstructions
+created for this project. Apple product names and marks belong to Apple Inc.
+This independent exhibit is not affiliated with or endorsed by Apple.
+Historical sources are linked from each chapter.
