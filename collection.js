@@ -7,32 +7,32 @@ export const collection = [
     "thumbnail": "https://media.sketchfab.com/models/4ebc2acfcd89453fad0c68eba4369342/thumbnails/727f96214f50487c838d824eb6625d3c/51e62c8b1cc945bd9ef62cb6f22ba4cd.jpeg",
     "author": "Elyor_Ismatov",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/iphone.glb",
+    "local_asset": "./assets/optimized/iphone-17e681fe02.glb",
     "subtitle": "Всё начинается с касания.",
     "text": "Телефон, музыка и интернет встречаются на одном экране. Вместо физической клавиатуры — Multi-Touch и интерфейс, которым управляешь пальцами.",
     "fact": "Первый iPhone работал в сети EDGE. Ни 3G, ни App Store на старте ещё не было.",
     "detail": "3,5″ · алюминий и пластик",
     "source": "https://www.apple.com/newsroom/2007/01/09Apple-Reinvents-the-Phone-with-iPhone/",
     "yaw": 2.94159265,
-    "poster": "./assets/posters/iphone.webp"
+    "poster": "./assets/posters/iphone.webp?v=9d884de6b7"
   },
   {
     "id": "3gs",
     "year": 2009,
     "name": "iPhone 3GS",
-    "model_url": "https://sketchfab.com/models/61d713258fa248f2b8a42bb09f233d96",
-    "thumbnail": "https://media.sketchfab.com/models/61d713258fa248f2b8a42bb09f233d96/thumbnails/137f9fe80347444eb86a3cb16bb2c7a7/7372bc1833854a1aa77e1b30015d2374.jpeg",
-    "author": "SvenkaColumbies",
+    "model_url": "https://sketchfab.com/models/0176db2d23ac4dbaa60f31687a9af20d",
+    "thumbnail": "https://media.sketchfab.com/models/0176db2d23ac4dbaa60f31687a9af20d/thumbnails/689fd629144c478eabc2fd3e6a71a038/9186f0cbb83848fca7b61c33d70d3df1.jpeg",
+    "author": "realwave195",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/3gs.glb",
+    "local_asset": "./assets/optimized/3gs-e3319ad016.glb",
     "subtitle": "Знакомая форма. Новая скорость.",
     "text": "Глянцевый округлый корпус продолжает дизайн iPhone 3G. Внутри — более быстрые компоненты, камера с автофокусом и возможность записывать видео.",
     "fact": "Буква S в названии означала Speed — скорость.",
-    "detail": "3,5″ · глянцевый пластик",
+    "detail": "3,5″ · глянцевый поликарбонат",
     "source": "https://www.apple.com/newsroom/2009/06/08Apple-Announces-the-New-iPhone-3GS-The-Fastest-Most-Powerful-iPhone-Yet/",
-    "alignPrincipalAxes": true,
-    "yaw": 2.94159265,
-    "poster": "./assets/posters/3gs.webp"
+    "poster": "./assets/posters/3gs.webp?v=3cf5b795aa",
+    "roll": 3.14159265,
+    "yaw": 2.94159265
   },
   {
     "id": "4",
@@ -42,13 +42,13 @@ export const collection = [
     "thumbnail": "https://media.sketchfab.com/models/ee93b2717d1f4e9fa84c72e84a519570/thumbnails/01afa6a85a1548618adf05d0772d4db0/5a31d48003204624ba350d2e0f129b0e.jpeg",
     "author": "DavidML_09",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/4.glb",
+    "local_asset": "./assets/optimized/4-5c899670ee.glb",
     "subtitle": "Стекло. Сталь. Чёткие грани.",
     "text": "Две стеклянные панели соединяет стальная рамка. Retina-дисплей делает текст заметно чётче, а фронтальная камера открывает эпоху FaceTime.",
     "fact": "Стальная рамка вокруг корпуса одновременно служила частью антенной системы.",
     "detail": "3,5″ Retina · стекло и сталь",
     "source": "https://www.apple.com/newsroom/2010/06/07Apple-Presents-iPhone-4/",
-    "poster": "./assets/posters/4.webp"
+    "poster": "./assets/posters/4.webp?v=1c482e2087"
   },
   {
     "id": "5",
@@ -58,13 +58,13 @@ export const collection = [
     "thumbnail": "https://media.sketchfab.com/models/3a2fd2a665534ebf8c181a4cdcc33b7e/thumbnails/9dc2d18669354d73ad72feeaeb3901ba/640.jpeg",
     "author": "thethieme",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/5.glb",
+    "local_asset": "./assets/optimized/5-5ace0a1461.glb",
     "subtitle": "Экран тянется вверх.",
     "text": "iPhone становится выше, но остаётся удобным для одной руки. Алюминиевая спинка и скошенные грани сменяют стеклянную конструкцию предыдущего поколения.",
     "fact": "Lightning заменяет широкий 30-контактный разъём. Новый штекер можно вставить любой стороной.",
     "detail": "4″ Retina · алюминий",
     "source": "https://www.apple.com/newsroom/2012/09/12Apple-Introduces-iPhone-5/",
-    "poster": "./assets/posters/5.webp"
+    "poster": "./assets/posters/5.webp?v=abc05d445d"
   },
   {
     "id": "5c",
@@ -74,14 +74,14 @@ export const collection = [
     "thumbnail": "https://media.sketchfab.com/models/5290072182ff4d518ea10c074201c5d8/thumbnails/5b1c809e189649d78062be6386409d1d/e2fb237f2b4d4992b31af981abd60578.jpeg",
     "author": "4DS Artwork",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/5c.glb",
+    "local_asset": "./assets/optimized/5c-59ed5beaad.glb",
     "subtitle": "Цвет выходит на первый план.",
     "text": "Плавный поликарбонатный корпус скрывает стальной каркас. Пять ярких цветов превращают знакомый iPhone в более личный предмет.",
     "fact": "Цветные корпуса появились одновременно с новым плоским интерфейсом iOS 7.",
     "detail": "4″ · пять цветов",
     "source": "https://www.apple.com/newsroom/2013/09/10Apple-Introduces-iPhone-5c-The-Most-Colorful-iPhone-Yet/",
     "roll": 3.141592653589793,
-    "poster": "./assets/posters/5c.webp"
+    "poster": "./assets/posters/5c.webp?v=3245d6e875"
   },
   {
     "id": "5s",
@@ -91,13 +91,13 @@ export const collection = [
     "thumbnail": "https://media.sketchfab.com/models/2a8b3bd5333d4f1899a67d5dca6b24ab/thumbnails/6394fb1cfc70475280e7dc690adc97f7/720x405.jpeg",
     "author": "Eternal Realm",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/5s.glb",
+    "local_asset": "./assets/optimized/5s-9560ef0316.glb",
     "subtitle": "Прикосновение становится ключом.",
     "text": "В привычной кнопке Home появляется Touch ID. Тонкое металлическое кольцо обозначает новое взаимодействие: приложить палец, чтобы разблокировать телефон.",
     "fact": "A7 сделал iPhone 5s первым смартфоном с 64-битной архитектурой процессора.",
     "detail": "4″ · Touch ID · A7",
     "source": "https://www.apple.com/newsroom/2013/09/10Apple-Announces-iPhone-5s-The-Most-Forward-Thinking-Smartphone-in-the-World/",
-    "poster": "./assets/posters/5s.webp"
+    "poster": "./assets/posters/5s.webp?v=f1060d5225"
   },
   {
     "id": "6",
@@ -107,13 +107,13 @@ export const collection = [
     "thumbnail": "https://media.sketchfab.com/models/9f0523f668e24e42ab440a2679d3c5d5/thumbnails/8927e5984fb841b9a9d12d874ab42a96/8ab420657a6b4a59bd90447da2e9a482.jpeg",
     "author": "Dylan.TYL",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/6.glb",
+    "local_asset": "./assets/optimized/6-d7a4709edb.glb",
     "subtitle": "Больше экрана. Мягче линии.",
     "text": "Острые грани уступают место округлому алюминию. Стекло плавно переходит к краям, а вместе с iPhone 6 появляется увеличенный iPhone 6 Plus.",
     "fact": "Кнопка питания переехала с верхней грани на правую: до неё проще дотянуться.",
     "detail": "4,7″ · округлый алюминий",
     "source": "https://www.apple.com/newsroom/2014/09/09Apple-Announces-iPhone-6-iPhone-6-Plus-The-Biggest-Advancements-in-iPhone-History/",
-    "poster": "./assets/posters/6.webp"
+    "poster": "./assets/posters/6.webp?v=b3f159983f"
   },
   {
     "id": "7",
@@ -123,33 +123,29 @@ export const collection = [
     "thumbnail": "https://media.sketchfab.com/models/f8d186434eae45b7bd673ab980dfd953/thumbnails/ebaa9756ad1e49b09535a7f774443d4d/720x405.jpeg",
     "author": "Eternal Realm",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/7.glb",
+    "local_asset": "./assets/optimized/7-5e3c99b65a.glb",
     "subtitle": "Меняются даже привычные детали.",
     "text": "Механическую кнопку Home заменяет чувствительная к нажатию поверхность с откликом Taptic Engine. Корпус получает защиту от воды и пыли.",
     "fact": "Разъём 3,5 мм исчезает. Показанный здесь (PRODUCT)RED появился в 2017, после запуска модели в 2016.",
     "detail": "4,7″ · Taptic Engine · IP67",
     "source": "https://www.apple.com/newsroom/2016/09/apple-introduces-iphone-7-iphone-7-plus/",
-    "poster": "./assets/posters/7.webp"
+    "poster": "./assets/posters/7.webp?v=5c651aaa5c"
   },
   {
     "id": "8",
     "year": 2017,
-    "name": "iPhone 8",
-    "model_url": "https://sketchfab.com/models/143bd31fd48b4d88a31d05c7ea0770b0",
-    "thumbnail": "https://media.sketchfab.com/models/143bd31fd48b4d88a31d05c7ea0770b0/thumbnails/10820fa3074d44b899f2a681e8b0c68e/ee5b27b7d3f94938960000c53bd5eb55.jpeg",
-    "author": "felixhumphrys0209",
+    "name": "iPhone 8 Plus",
+    "model_url": "https://sketchfab.com/models/b323bf6a8f764d10a19930558df8aa32",
+    "thumbnail": "https://media.sketchfab.com/models/b323bf6a8f764d10a19930558df8aa32/thumbnails/c6f65abcbc9a45e09c2159786871e110/8b84884b5f5d4d27a7abf88558cea8fe.jpeg",
+    "author": "VrStore",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/8.glb",
+    "local_asset": "./assets/optimized/8-287c1ff04e.glb",
     "subtitle": "Возвращение стекла.",
     "text": "За знакомым силуэтом — стеклянная задняя панель. Она помогает добавить беспроводную зарядку, а дисплей True Tone подстраивает оттенок под освещение.",
     "fact": "Для беспроводной зарядки Apple выбрала стандарт Qi.",
-    "detail": "4,7″ · стеклянная спинка · Qi",
+    "detail": "5,5″ · стекло · беспроводная зарядка",
     "source": "https://www.apple.com/newsroom/2017/09/iphone-8-and-iphone-8-plus-a-new-generation-of-iphone/",
-    "excludeNodes": [
-      "Cube.002_11",
-      "Cube.003_12"
-    ],
-    "poster": "./assets/posters/8.webp"
+    "poster": "./assets/posters/8.webp?v=4176130dca"
   },
   {
     "id": "x",
@@ -159,7 +155,7 @@ export const collection = [
     "thumbnail": "https://media.sketchfab.com/models/1296ce47a5984cbc897c1d668f888ba8/thumbnails/c64d54b1289d4e6d9c575f5bebcbec5c/720x405.jpeg",
     "author": "thepotatoking55",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/x.glb",
+    "local_asset": "./assets/optimized/x-11dd1f4159.glb",
     "subtitle": "Почти всё становится экраном.",
     "text": "Кнопка Home исчезает. OLED-дисплей занимает почти всю переднюю панель, жесты заменяют привычное нажатие, а Face ID узнаёт владельца по лицу.",
     "fact": "X читается как «десять»: модель представили в год десятилетия iPhone.",
@@ -173,29 +169,23 @@ export const collection = [
     "yaw": -0.2,
     "restoreLegacyContrast": true,
     "roll": 3.141592653589793,
-    "poster": "./assets/posters/x.webp"
+    "poster": "./assets/posters/x.webp?v=7ea29ab164"
   },
   {
     "id": "11pro",
     "year": 2019,
     "name": "iPhone 11 Pro",
-    "model_url": "https://sketchfab.com/models/bf72e14bcc254952864057aeec7ee7f5",
-    "thumbnail": "https://media.sketchfab.com/models/bf72e14bcc254952864057aeec7ee7f5/thumbnails/8c73b408ed044441af93428e574e25f6/77b010db002f429086190395bc5d8a42.jpeg",
-    "author": "KendeMrena",
+    "model_url": "https://sketchfab.com/models/5e058add447046afba171eb8e8ae5d5a",
+    "thumbnail": "https://media.sketchfab.com/models/5e058add447046afba171eb8e8ae5d5a/thumbnails/a6b05543765e429cb866fb0cbe7417a9/b8f7e3335d5c49cea67d0e3d513ee0fc.jpeg",
+    "author": "polyman",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/11pro.glb",
+    "local_asset": "./assets/optimized/11pro-f657379ce4.glb",
     "subtitle": "Камера становится системой.",
     "text": "Три объектива объединены на квадратной площадке. Сверхширокоугольная камера расширяет поле зрения, а матовая стеклянная спинка меняет ощущение от корпуса.",
     "fact": "Это первое поколение iPhone с названием Pro.",
     "detail": "5,8″ OLED · три камеры",
     "source": "https://www.apple.com/newsroom/2019/09/iphone-11-pro-and-iphone-11-pro-max-the-most-powerful-and-advanced-smartphones/",
-    "excludeNodes": [
-      "pCube9",
-      "pCube11",
-      "polySurface28",
-      "pCube12"
-    ],
-    "poster": "./assets/posters/11pro.webp"
+    "poster": "./assets/posters/11pro.webp?v=23396ac6a3"
   },
   {
     "id": "12pro",
@@ -205,13 +195,13 @@ export const collection = [
     "thumbnail": "https://media.sketchfab.com/models/05dfc991665e45c68c8b7062136c0c6e/thumbnails/87d2766daed5464a8c93954e70fac6db/96c763922dc24051b31f1d7208f2119d.jpeg",
     "author": "DatSketch",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/12pro.glb",
+    "local_asset": "./assets/optimized/12pro-612100cade.glb",
     "subtitle": "Снова прямые грани.",
     "text": "Плоская стальная рамка возвращает строгий силуэт. За стеклянной спинкой скрываются магниты MagSafe, которые помогают точно совмещать зарядку и аксессуары.",
     "fact": "Рядом с камерами появляется LiDAR — датчик, измеряющий расстояние с помощью света.",
     "detail": "6,1″ · 5G · MagSafe",
     "source": "https://www.apple.com/newsroom/2020/10/apple-introduces-iphone-12-pro-and-iphone-12-pro-max-with-5g/",
-    "poster": "./assets/posters/12pro.webp"
+    "poster": "./assets/posters/12pro.webp?v=76a8438ce7"
   },
   {
     "id": "13promax",
@@ -221,13 +211,13 @@ export const collection = [
     "thumbnail": "https://media.sketchfab.com/models/4328dea00e47497dbeac73c556121bc9/thumbnails/021d575f06ca4b94bfcf70566b76b91c/83ccb6b737f44ec98c7c81fb6e971850.jpeg",
     "author": "DatSketch",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/13promax.glb",
+    "local_asset": "./assets/optimized/13promax-43378c03a8.glb",
     "subtitle": "Движение становится плавнее.",
     "text": "Большой дисплей получает ProMotion с адаптивной частотой до 120 Гц. Камеры увеличиваются, а вырез в верхней части экрана становится меньше.",
     "fact": "Макросъёмка позволяет фокусироваться на объектах всего в двух сантиметрах от камеры.",
     "detail": "6,7″ · ProMotion · макросъёмка",
     "source": "https://www.apple.com/newsroom/2021/09/apple-unveils-iphone-13-pro-and-iphone-13-pro-max-more-pro-than-ever-before/",
-    "poster": "./assets/posters/13promax.webp"
+    "poster": "./assets/posters/13promax.webp?v=67ef30bea9"
   },
   {
     "id": "14promax",
@@ -237,13 +227,13 @@ export const collection = [
     "thumbnail": "https://media.sketchfab.com/models/95f11f5a06604c8b9fd44046ae52a9cc/thumbnails/dec91007f8404588a352a4f5d083ccfe/6f0f1d76c73a4b6d9a01a0fe29af9435.jpeg",
     "author": "akshatmittal",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/14promax.glb",
+    "local_asset": "./assets/optimized/14promax-aabe937cf3.glb",
     "subtitle": "Вырез учится взаимодействовать.",
     "text": "Dynamic Island превращает область вокруг фронтальных датчиков в часть интерфейса. Таймеры, музыка и текущие события получают собственное место над приложениями.",
     "fact": "Always-On оставляет важную информацию видимой даже на заблокированном экране.",
     "detail": "6,7″ · Dynamic Island · Always-On",
     "source": "https://www.apple.com/newsroom/2022/09/apple-debuts-iphone-14-pro-and-iphone-14-pro-max/",
-    "poster": "./assets/posters/14promax.webp"
+    "poster": "./assets/posters/14promax.webp?v=97ff49b7bb"
   },
   {
     "id": "15promax",
@@ -253,7 +243,7 @@ export const collection = [
     "thumbnail": "https://media.sketchfab.com/models/5b7b35513a154ac69619dc2b2fe15686/thumbnails/c87afc9dc46543918485392cdd1a2290/070304791dad467cab5547f0759afb9f.jpeg",
     "author": "MpPower™",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/15promax.glb",
+    "local_asset": "./assets/optimized/15promax-0b9493bda0.glb",
     "subtitle": "Титан меняет характер корпуса.",
     "text": "Титановая внешняя рамка делает Pro легче. Переключатель беззвучного режима уступает место настраиваемой кнопке действия, а на нижней грани появляется USB-C.",
     "fact": "В Pro Max впервые используется тетрапризма для пятикратного оптического приближения.",
@@ -268,7 +258,7 @@ export const collection = [
         "metalness": 0.15
       }
     },
-    "poster": "./assets/posters/15promax.webp"
+    "poster": "./assets/posters/15promax.webp?v=8ed4fbaed3"
   },
   {
     "id": "16promax",
@@ -278,13 +268,13 @@ export const collection = [
     "thumbnail": "https://media.sketchfab.com/models/41a071ae12794b668502f58d1e0fd1a3/thumbnails/c5e5266846cd42fb8b8a37220c5a14ae/0215f8c5ece947f1b2c9583dbab6be80.jpeg",
     "author": "MajdyModels",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/16promax.glb",
+    "local_asset": "./assets/optimized/16promax-5b0d18184b.glb",
     "subtitle": "Ещё один способ сделать кадр.",
     "text": "Экран Pro Max вырастает до 6,9 дюйма. На правой грани появляется Camera Control — отдельный элемент для запуска камеры и управления съёмкой.",
     "fact": "Camera Control распознаёт нажатие и скольжение пальца, объединяя несколько способов управления.",
     "detail": "6,9″ · Camera Control",
     "source": "https://www.apple.com/newsroom/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/",
-    "poster": "./assets/posters/16promax.webp"
+    "poster": "./assets/posters/16promax.webp?v=6f70b0fff8"
   },
   {
     "id": "17pro",
@@ -294,13 +284,13 @@ export const collection = [
     "thumbnail": "https://media.sketchfab.com/models/4541aa8a28324b33a2baaf81d263aaec/thumbnails/f8e88a20e2834628af64dce7fbcc6d10/5c420b1430ff4580bd716b6c15a76736.jpeg",
     "author": "Ranguel",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/17pro.glb",
+    "local_asset": "./assets/optimized/17pro-03f9da7575.glb",
     "subtitle": "Новая архитектура снаружи и внутри.",
     "text": "Алюминиевый Unibody-корпус и широкая площадка камер меняют задний силуэт. Испарительная камера помогает отводить тепло от A19 Pro.",
     "fact": "Три задние камеры этого поколения имеют разрешение 48 Мп.",
     "detail": "6,3″ · алюминиевый Unibody · A19 Pro",
     "source": "https://www.apple.com/newsroom/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/",
-    "poster": "./assets/posters/17pro.webp"
+    "poster": "./assets/posters/17pro.webp?v=61377df0e8"
   },
   {
     "id": "air",
@@ -310,13 +300,13 @@ export const collection = [
     "thumbnail": "https://media.sketchfab.com/models/66dd43c1660d430593a31652bd265531/thumbnails/12611f0e53b84032ab59e5870f35ac81/d7abaa798b9947d4b6f3594fc79303d1.jpeg",
     "author": "rtql8d",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/air.glb",
+    "local_asset": "./assets/optimized/air-08713eff2c.glb",
     "subtitle": "Тонкость становится идеей.",
     "text": "Титановый корпус толщиной 5,6 мм исследует другой путь развития iPhone. Компоненты собраны в верхней площадке, оставляя больше места для аккумулятора.",
     "fact": "В тонком корпусе остаётся большой 6,5-дюймовый дисплей с ProMotion.",
     "detail": "5,6 мм · титан · 6,5″",
     "source": "https://www.apple.com/newsroom/2025/09/introducing-iphone-air-a-powerful-new-iphone-with-a-breakthrough-design/",
-    "poster": "./assets/posters/air.webp"
+    "poster": "./assets/posters/air.webp?v=745475b1a3"
   },
   {
     "id": "18promax",
@@ -326,7 +316,7 @@ export const collection = [
     "thumbnail": "https://media.sketchfab.com/models/5e40716caa274a789de5b17798ee2e78/thumbnails/ab4a1355b66641cc9f58b13a3debd5c7/b134bf2e2f634b808883de15076532be.jpeg",
     "author": "Pro Animator",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/18promax.glb",
+    "local_asset": "./assets/optimized/18promax-daf780139c.glb",
     "subtitle": "Свет получает новое управление.",
     "text": "Знакомый большой корпус скрывает новую систему камер. Основная камера с переменной диафрагмой даёт больше контроля над светом и глубиной резкости.",
     "fact": "Dynamic Island становится меньше; вычисления и обработку изображения берёт на себя A20 Pro.",
@@ -335,7 +325,7 @@ export const collection = [
     "excludeNodes": [
       "Plane_1"
     ],
-    "poster": "./assets/posters/18promax.webp"
+    "poster": "./assets/posters/18promax.webp?v=9122649935"
   },
   {
     "id": "duo",
@@ -345,7 +335,7 @@ export const collection = [
     "thumbnail": "https://media.sketchfab.com/models/d2ca6bff92c141d1b1c5759b19d533e0/thumbnails/3394b2f8e4014568b27d9317019aeb71/110ced5c2ddd4850b923436a4aef4dfc.jpeg",
     "author": "PikkmeStudios",
     "license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "local_asset": "./assets/optimized/duo.glb",
+    "local_asset": "./assets/optimized/duo-961c0231cb.glb",
     "subtitle": "История раскрывается дальше.",
     "text": "Первый складной iPhone меняет саму форму устройства. Внешний экран остаётся привычным телефоном, а раскрытый корпус превращается в большой рабочий дисплей.",
     "fact": "Два экрана — 5,4 и 7,6 дюйма. Touch ID встроен в боковую кнопку.",
@@ -359,7 +349,7 @@ export const collection = [
     "keepYUp": true,
     "displayScale": 0.75,
     "yaw": 2.94159265,
-    "poster": "./assets/posters/duo.webp",
+    "poster": "./assets/posters/duo.webp?v=de280814c7",
     "inactiveScreenNodes": [
       "Object_107"
     ]

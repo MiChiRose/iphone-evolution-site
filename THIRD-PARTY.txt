@@ -2,6 +2,7 @@ iPhone evolution — third-party notices
 
 Three.js 0.180.0: MIT, Copyright Three.js Authors. Full license: vendor/three/LICENSE.
 https://threejs.org/
+Meshoptimizer 0.24.0: MIT, Copyright Arseny Kapoulkine. Full license: vendor/three/addons/libs/MESHOPT-LICENSE.md.
 Golos Text: SIL Open Font License 1.1. Full license: assets/Golos-Text-OFL.txt.
 
 Apple product names belong to Apple Inc. This is an independent exhibit. Historical references appear in each chapter.
@@ -13,8 +14,8 @@ https://sketchfab.com/models/4ebc2acfcd89453fad0c68eba4369342
 https://creativecommons.org/licenses/by/4.0/
 Changes: scene normalization and framing.
 
-iPhone 3GS — SvenkaColumbies
-https://sketchfab.com/models/61d713258fa248f2b8a42bb09f233d96
+iPhone 3GS — realwave195
+https://sketchfab.com/models/0176db2d23ac4dbaa60f31687a9af20d
 https://creativecommons.org/licenses/by/4.0/
 Changes: scene normalization and framing.
 
@@ -48,8 +49,8 @@ https://sketchfab.com/models/f8d186434eae45b7bd673ab980dfd953
 https://creativecommons.org/licenses/by/4.0/
 Changes: scene normalization and framing.
 
-iPhone 8 — felixhumphrys0209
-https://sketchfab.com/models/143bd31fd48b4d88a31d05c7ea0770b0
+iPhone 8 Plus — VrStore
+https://sketchfab.com/models/b323bf6a8f764d10a19930558df8aa32
 https://creativecommons.org/licenses/by/4.0/
 Changes: scene normalization and framing.
 
@@ -58,8 +59,8 @@ https://sketchfab.com/models/1296ce47a5984cbc897c1d668f888ba8
 https://creativecommons.org/licenses/by/4.0/
 Changes: scene normalization and framing.
 
-iPhone 11 Pro — KendeMrena
-https://sketchfab.com/models/bf72e14bcc254952864057aeec7ee7f5
+iPhone 11 Pro — polyman
+https://sketchfab.com/models/5e058add447046afba171eb8e8ae5d5a
 https://creativecommons.org/licenses/by/4.0/
 Changes: scene normalization and framing.
 
