@@ -3,6 +3,8 @@ import {GLTFLoader} from './vendor/three/addons/loaders/GLTFLoader.js';
 import {MeshoptDecoder} from './vendor/three/addons/libs/meshopt_decoder.module.js?v=0.24';
 import {prepareModel,disposeModel} from './model-tools.js?v=3';
 import {collection as items} from './collection.js?v=3';
+import {ModelBuffers,neighborOrder,idleWork} from './model-loading.js?v=4';
+import {warmModel,modelBytes} from './model-warmup.js?v=4';
 
 const root=document.documentElement,story=document.querySelector('#story'),canvas=document.querySelector('canvas'),status=document.querySelector('.scene-status');
 const chapters=[...document.querySelectorAll('.chapter')],captions=chapters.map(x=>x.querySelector('.caption')),devices=chapters.map(x=>x.querySelector('.device'));
@@ -13,9 +15,14 @@ const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)),smooth=v=>{v=clamp(v);return 
 let userReduced=null;try{const saved=localStorage.getItem('iphone-motion');if(saved)userReduced=saved==='reduced';}catch{}
 const reduced=()=>userReduced??reduceMedia.matches;
 let current=-1,value=0,target=0,step=1,raf=0,last=0,dirty=true,disposed=false,inspecting=false,drag=null,yaw=0,pitch=0;
-let renderer,scene,camera,environment,loading=false,working=-1,queue=[],contextLost=false,loadController;
+let renderer,scene,camera,environment,loading=false,working=-1,contextLost=false,prepareController,preparationTask;
+let direction=1,modelOrder=[],skipped=new Set();
+const buffers=new ModelBuffers(items.map(item=>item.local_asset),{maxBytes:(mobile.matches?8:12)*1024*1024});
+const retired=new Set();let retiring=false;
+const trace=(stage,index,extra={})=>{if(root.hasAttribute('data-profile'))document.dispatchEvent(new CustomEvent('iphone-model',{detail:{stage,index,time:performance.now(),...extra}}));};
 let sceneOnscreen=true;
 const models=new Map(),failed=new Map(),loader=new GLTFLoader();loader.setMeshoptDecoder(MeshoptDecoder);
+let decodeWorkers=0;try{if(typeof Worker==='function'){decodeWorkers=mobile.matches?1:Math.min(2,Math.max(1,(navigator.hardwareConcurrency||2)-1));MeshoptDecoder.useWorkers(decodeWorkers);}}catch{decodeWorkers=0;}
 root.classList.add('enhanced');
 
 function measure(){step=innerHeight*1.12;story.style.height=(items.length*step+innerHeight)+'px';if(renderer){renderer.setPixelRatio(Math.min(devicePixelRatio,mobile.matches?1.5:1.75));renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}target=clamp(scrollY/step,0,items.length-.0001);dirty=true;}
@@ -24,7 +31,7 @@ motion.addEventListener('click',()=>{userReduced=!reduced();try{localStorage.set
 reduceMedia.addEventListener('change',()=>{userReduced=null;updateMode();});
 
 function select(index){
- if(current===index)return;const previous=current;current=index;
+ if(current===index)return;const previous=current;if(previous>=0)direction=index>previous?1:-1;current=index;
  chapters.forEach((chapter,i)=>{const yes=i===index;chapter.classList.toggle('is-current',yes);chapter.inert=!yes;chapter.setAttribute('aria-hidden',String(!yes));});
  links.forEach((link,i)=>{if(i===index)link.setAttribute('aria-current','true');else link.removeAttribute('aria-current');});
  document.querySelector('.scroll-hint').hidden=index!==0;ghost.textContent=items[index].year;document.querySelector('.timeline-counter').textContent=String(index+1).padStart(2,'0')+' / '+items.length;
@@ -47,22 +54,48 @@ function go(index,{keyboard=false}={}){
 }
 function stopInspect(){if(!inspecting)return;inspecting=false;yaw=pitch=0;drag=null;canvas.classList.remove('is-inspecting');canvas.tabIndex=-1;document.querySelectorAll('.inspect-button').forEach(b=>{b.setAttribute('aria-pressed','false');b.textContent='Осмотреть в 3D';});dirty=true;showStatus();wake();}
 function inspect(index){
- if(failed.has(index)){failed.delete(index);schedule(index);showStatus();return;}
+ if(failed.has(index)){failed.delete(index);buffers.evict(index);schedule(index);showStatus();return;}
  if(!models.has(index))return;
  if(inspecting){stopInspect();return;}go(index);inspecting=true;canvas.classList.add('is-inspecting');canvas.tabIndex=0;canvas.focus({preventScroll:true});chapters[index].querySelector('.inspect-button').setAttribute('aria-pressed','true');chapters[index].querySelector('.inspect-button').textContent='Готово';showStatus();
 }
 
-function trim(){const keep=new Set(mobile.matches?[current,current+1]:[current-1,current,current+1]);for(const [i,m]of models)if(!keep.has(i)){disposeModel(m);models.delete(i);chapters[i].dataset.loaded='false';}}
-function schedule(index){
- if(!renderer)return;const next=Math.min(items.length-1,index+1);queue=[index,...(navigator.connection?.saveData?[]:[next])].filter((x,i,a)=>a.indexOf(x)===i&&!models.has(x)&&!failed.has(x)&&x!==working);if(working>=0&&Math.abs(working-index)>1)loadController?.abort();trim();pump();
+function retire(model){
+ model.removeFromParent();model.visible=false;retired.add(model);drainRetired();
 }
-async function pump(){
- if(loading||disposed||!renderer)return;const index=queue.shift();if(index===undefined)return;
- const item=items[index];if(!item.local_asset){pump();return;}
- loading=true;working=index;
- try{loadController=new AbortController();const response=await fetch(item.local_asset,{signal:loadController.signal});if(!response.ok)throw new Error('HTTP '+response.status);const buffer=await response.arrayBuffer();if(disposed)return;const gltf=await loader.parseAsync(buffer,'');if(disposed){disposeModel(gltf.scene);return;}const model=prepareModel(gltf,item);scene.add(model);models.set(index,model);chapters[index].dataset.loaded='true';chapters[index].querySelector('.inspect-button').disabled=false;chapters[index].querySelector('.inspect-button').textContent='Осмотреть в 3D';trim();}
- catch(error){if(error.name!=='AbortError'){failed.set(index,error.message);console.warn('Model load failed:',item.id,error.message);}}
- finally{loading=false;working=-1;dirty=true;if(current>=0)showStatus();wake();pump();}
+async function drainRetired(){
+ if(retiring)return;retiring=true;
+ try{while(retired.size){if(!disposed)await idleWork(null);const model=retired.values().next().value;if(!model)break;retired.delete(model);disposeModel(model);}}
+ finally{retiring=false;}
+}
+function trim(){
+ const keep=neighborOrder(current,items.length,2,1,direction),budget=(mobile.matches?64:128)*1024*1024;
+ let bytes=0;const allowed=new Set();
+ for(const index of keep){const model=models.get(index);if(!model)continue;const cost=model.userData.bytes;if(index===current||bytes+cost<=budget){allowed.add(index);bytes+=cost;}else skipped.add(index);}
+ for(const [i,m]of models)if(!allowed.has(i)){models.delete(i);chapters[i].dataset.loaded='false';retire(m);}
+}
+function schedule(index){
+ if(!renderer||disposed)return;skipped.clear();
+ modelOrder=navigator.connection?.saveData?[index]:neighborOrder(index,items.length,2,1,direction);
+ buffers.plan(navigator.connection?.saveData?[index]:[...modelOrder,...neighborOrder(index,items.length,mobile.matches?3:4,1,direction)]);
+ if(working>=0&&!modelOrder.includes(working))prepareController?.abort();trim();pump();
+}
+function pump(){
+ if(loading||disposed||!renderer||contextLost||document.hidden)return;
+ const index=modelOrder.find(i=>!models.has(i)&&!failed.has(i)&&!skipped.has(i));if(index===undefined)return;
+ loading=true;working=index;prepareController=new AbortController();const signal=prepareController.signal;
+ preparationTask=prepare(index,signal).finally(()=>{loading=false;working=-1;dirty=true;if(!disposed){showStatus();wake();pump();}});
+}
+async function prepare(index,signal){
+ const item=items[index],urgent=()=>index===current;let model;
+ try{
+  const started=performance.now();trace('fetch',index);const buffer=await buffers.get(index);signal.throwIfAborted();trace('downloaded',index,{ms:performance.now()-started});
+  await idleWork(signal,urgent);signal.throwIfAborted();const parsedAt=performance.now();const gltf=await loader.parseAsync(buffer,'');
+  if(signal.aborted||disposed){disposeModel(gltf.scene);return;}model=prepareModel(gltf,item);model.userData.bytes=modelBytes(model);trace('parsed',index,{ms:performance.now()-parsedAt});
+  await warmModel(model,{renderer,scene,camera,signal,urgent,batchSize:mobile.matches?4:6});signal.throwIfAborted();
+  scene.add(model);models.set(index,model);model=null;chapters[index].dataset.loaded='true';chapters[index].querySelector('.inspect-button').disabled=false;chapters[index].querySelector('.inspect-button').textContent='Осмотреть в 3D';trim();
+  trace('ready',index,{ms:performance.now()-started,resident:[...models.keys()],residentBytes:[...models.values()].reduce((sum,m)=>sum+m.userData.bytes,0),bufferBytes:buffers.bytes,decodeWorkers});
+ }catch(error){if(error.name!=='AbortError'){failed.set(index,error.message);console.warn('Model load failed:',item.id,error.message);trace('failed',index,{message:error.message});}}
+ finally{if(model)retire(model);}
 }
 // Swap complete, opaque models at the thinnest part of a turn. Never fade the shell:
 // disabling its depth writes reveals screen/camera parts from the other side.
@@ -90,7 +123,7 @@ function render(){
  root.style.setProperty('--story-progress',String(clamp(p/(items.length-1))));
  sceneOnscreen=scrollY<story.offsetHeight;
  ghost.style.left=mobile.matches?'5%':selected%2?'1%':'50%';ghost.style.opacity=String(1-.5*Math.sin(t*Math.PI));
- if(renderer&&!contextLost&&sceneOnscreen)renderer.render(scene,camera);document.body.dataset.progress=p.toFixed(3);document.body.dataset.ready=renderer?'true':'fallback';
+ if(renderer&&!contextLost&&sceneOnscreen){trace('frame-start',current);renderer.render(scene,camera);trace('frame-end',current);for(const [index,model]of models)if(model.visible&&!model.userData.presented){model.userData.presented=true;trace('presented',index);}}document.body.dataset.progress=p.toFixed(3);document.body.dataset.ready=renderer?'true':'fallback';
 }
 function tick(now){raf=0;if(disposed||document.hidden||dialog.open)return;const dt=Math.min(.05,(now-last)/1000||.016);last=now;
  const delta=target-value;if(Math.abs(delta)>.0003){value=reduced()?target:value+delta*(1-Math.exp(-dt*15));dirty=true;}else if(delta!==0){value=target;dirty=true;}
@@ -99,7 +132,7 @@ function tick(now){raf=0;if(disposed||document.hidden||dialog.open)return;const 
 function wake(){if(!raf&&!disposed)raf=requestAnimationFrame(tick);}
 
 try{
- renderer=new T.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'high-performance'});renderer.setClearColor(0,0);renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;
+ renderer=new T.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'high-performance'});renderer.transmissionResolutionScale=.5;renderer.setClearColor(0,0);renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;
  scene=new T.Scene();camera=new T.PerspectiveCamera(35,1,.1,100);camera.position.z=11.4;
  scene.add(new T.HemisphereLight(0xffffff,0x9295ab,2.1));
  for(const [color,intensity,x,y,z]of[[0xffffff,3.5,-4,6,7],[0xd7e0ff,2.3,5,2,4],[0xffffff,2.6,2,5,-4]]){const l=new T.DirectionalLight(color,intensity);l.position.set(x,y,z);scene.add(l);}
@@ -117,7 +150,7 @@ document.querySelector('[data-ending]').addEventListener('click',()=>{stopInspec
 document.querySelectorAll('[data-next]').forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.next))));
 document.querySelectorAll('[data-inspect]').forEach(b=>b.addEventListener('click',()=>inspect(Number(b.dataset.inspect))));
 document.querySelector('.about-button').addEventListener('click',()=>dialog.showModal());document.querySelector('.close-dialog').addEventListener('click',()=>dialog.close());dialog.addEventListener('close',()=>{dirty=true;wake();});
-document.addEventListener('visibilitychange',()=>{if(!document.hidden){dirty=true;wake();}});
+document.addEventListener('visibilitychange',()=>{buffers.pause(document.hidden);if(!document.hidden){dirty=true;pump();wake();}});
 window.addEventListener('keydown',e=>{
  if(dialog.open||e.ctrlKey||e.altKey||e.metaKey||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
  if(inspecting){if(e.key==='Escape'){stopInspect();chapters[current].querySelector('.inspect-button').focus({preventScroll:true});return;}if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();if(e.key==='ArrowLeft')yaw-=.18;if(e.key==='ArrowRight')yaw+=.18;if(e.key==='ArrowUp')pitch=clamp(pitch-.10,-.8,.8);if(e.key==='ArrowDown')pitch=clamp(pitch+.10,-.8,.8);dirty=true;wake();}return;}
@@ -128,6 +161,12 @@ window.addEventListener('keydown',e=>{
 canvas.addEventListener('pointerdown',e=>{if(!inspecting||e.button!==0||drag)return;drag={id:e.pointerId,x:e.clientX,y:e.clientY,yaw,pitch};canvas.setPointerCapture(e.pointerId);});
 canvas.addEventListener('pointermove',e=>{if(drag?.id!==e.pointerId)return;yaw=drag.yaw+(e.clientX-drag.x)*.009;pitch=clamp(drag.pitch+(e.clientY-drag.y)*.005,-.8,.8);dirty=true;wake();});
 for(const type of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(type,e=>{if(drag?.id===e.pointerId)drag=null;});
-canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();contextLost=true;status.hidden=false;status.textContent='Восстанавливаем 3D-сцену…';});
-canvas.addEventListener('webglcontextrestored',()=>{contextLost=false;dirty=true;showStatus();wake();});
-window.addEventListener('pagehide',()=>{disposed=true;loadController?.abort();cancelAnimationFrame(raf);models.forEach(disposeModel);environment?.dispose();renderer?.dispose();});
+canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();contextLost=true;prepareController?.abort();status.hidden=false;status.textContent='Восстанавливаем 3D-сцену…';});
+canvas.addEventListener('webglcontextrestored',()=>{contextLost=false;for(const [i,model]of models){chapters[i].dataset.loaded='false';retire(model);}models.clear();dirty=true;schedule(current);showStatus();wake();});
+window.addEventListener('pagehide',event=>{
+ cancelAnimationFrame(raf);raf=0;buffers.pause(true);if(event.persisted)return;
+ disposed=true;prepareController?.abort();buffers.dispose();
+ const cleanup=()=>{models.forEach(disposeModel);retired.forEach(disposeModel);retired.clear();MeshoptDecoder.useWorkers?.(0);environment?.dispose();renderer?.dispose();};
+ if(preparationTask)preparationTask.finally(cleanup);else cleanup();
+});
+window.addEventListener('pageshow',event=>{if(event.persisted){buffers.pause(false);dirty=true;schedule(current);wake();}});
